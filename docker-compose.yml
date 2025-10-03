@@ -1,9 +1,9 @@
 version: "3.9"
 services:
-urlx:
-build: .
-env_file: .env
-volumes:
-- ./:/app
-working_dir: /app
-command: bash -c "make run DOMAINS=domains.txt OUT=data"
+  urlx:
+    image: python:3.11-slim
+    working_dir: /app
+    volumes:
+      - ./:/app
+    env_file: .env
+    command: bash -lc "python -m venv .venv && . .venv/bin/activate && pip install -r requirements.txt && npm install && make run DOMAINS=domains.txt OUT=data"

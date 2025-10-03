@@ -1,0 +1,3 @@
+_next/
+_static/
+assets/

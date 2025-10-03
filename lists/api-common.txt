@@ -1,0 +1,12 @@
+api/
+api/v1/
+api/v2/
+api/users
+api/users/search
+api/auth/login
+api/auth/logout
+health
+healthz
+metrics
+status
+graphql
