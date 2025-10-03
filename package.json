@@ -1,0 +1,1 @@
+{ "name": "urlx-js-tools", "version": "0.1.0", "private": true, "scripts": { "extract": "node -e "console.log('AST placeholder')"" }, "dependencies": { "acorn": "^8.12.1", "esprima": "^4.0.1", "source-map": "^0.7.4" } }

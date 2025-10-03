@@ -1,0 +1,9 @@
+version: "3.9"
+services:
+urlx:
+build: .
+env_file: .env
+volumes:
+- ./:/app
+working_dir: /app
+command: bash -c "make run DOMAINS=domains.txt OUT=data"
