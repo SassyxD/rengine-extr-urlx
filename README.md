@@ -5,9 +5,9 @@ Add-on pipeline for rengine:
 2) Expand endpoints via LLM suggestions with HTTP validation
 
 ## Quickstart
-python -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
-npm install
+- python -m venv .venv && source .venv/bin/activate
+- pip install -r requirements.txt
+- npm install
 cp .env.example .env
 
 # domains.txt contains in-scope roots (one per line)
