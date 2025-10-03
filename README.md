@@ -1,32 +1,51 @@
-# rengine-ext-urlx (Task 2 + 7)
+# rengine-ext-urlx — Task 2 + 7 (Short README)
 
-Add-on pipeline for rengine:
-1) Collect more URLs (Wayback, GAU, HTML crawl, JS extraction, sourcemaps)
-2) Expand endpoints via LLM suggestions with HTTP validation
+Add-on for **rengine** to 1) collect more URLs (Wayback/GAU/JS/sourcemaps) and 2) expand endpoints via LLM-style heuristics + HTTP validation. Outputs **NDJSON** ready to import.
 
-## Quickstart
-- python -m venv .venv && source .venv/bin/activate
-- pip install -r requirements.txt
-- npm install
-- cp .env.example .env
+---
 
-# domains.txt contains in-scope roots (one per line)
-make run DOMAINS=domains.txt OUT=data
+## Install
+```bash
+git clone <your-repo> rengine-ext-urlx && cd rengine-ext-urlx
+python -m venv .venv && source .venv/bin/activate   # Windows PS: .\.venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
+npm install
+cp .env.example .env
+```
+**Optional (Go seeds):**
+```bash
+go install github.com/lc/gau/v2/cmd/gau@latest
+go install github.com/tomnomnom/waybackurls@latest
+```
 
-# or 
-- python tools/url_collector.py --domains domains.txt --out data/urls.ndjson
-- python tools/js_crawler.py --in data/urls.ndjson --out data/urls.ndjson --dedupe
-- python tools/llm_url_expander.py --in data/urls.ndjson --out data/url_candidates.ndjson
+---
 
-# check data by using
-- wc -l data/urls.ndjson data/url_candidates.ndjson
-- head -n 5 data/urls.ndjson
-- head -n 5 data/url_candidates.ndjson
+## Quick Start
+```bash
+# in-scope domains
+echo "example.com" > domains.txt && echo "api.example.com" >> domains.txt
 
+# output dir
+mkdir -p data
 
-Outputs:
-- data/urls.ndjson
-- data/url_candidates.ndjson
-- data/metrics.json
+# run pipeline (from repo root)
+python -m tools.url_collector --domains domains.txt --out data/urls.ndjson
+python -m tools.js_crawler --in data/urls.ndjson --out data/urls.ndjson --dedupe
+python -m tools.llm_url_expander --in data/urls.ndjson --out data/url_candidates.ndjson
+```
+**Windows Git Bash tips:** use `/` paths and `source .venv/Scripts/activate`  
+**PowerShell:** set `$env:PYTHONPATH = (Get-Location).Path` if module import fails.
 
-Integration with rengine: import NDJSON via DB/webhook; tag `source=crawler|js|sourcemap|llm`.
+---
+
+## Outputs
+- `data/urls.ndjson` — collected/crawled URLs
+- `data/url_candidates.ndjson` — heuristics + validation (`status`, `validated`, `content_length`)
+- `data/metrics.json` — placeholder
+
+---
+
+## Troubleshooting (speedrun)
+- `No module named 'tools'` → run from repo root using `python -m ...`
+- Backslash swallowed (Git Bash) → use `/` paths
+- Python mismatch → use Python **3.11**, recreate `.venv`
