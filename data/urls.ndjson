@@ -1,0 +1,4 @@
+{"url":"https://example.com/","source":"gau","first_seen":"2025-10-03T19:36:22.491137+00:00","depth":0,"from_js":false,"from_sourcemap":false,"parent":null}
+{"url":"http://example.com/robots.txt","source":"gau","first_seen":"2025-10-03T19:36:22.491137+00:00","depth":0,"from_js":false,"from_sourcemap":false,"parent":null}
+{"url":"https://api.example.com/","source":"gau","first_seen":"2025-10-03T19:36:22.593468+00:00","depth":0,"from_js":false,"from_sourcemap":false,"parent":null}
+{"url":"http://api.example.com/robots.txt","source":"gau","first_seen":"2025-10-03T19:36:22.593468+00:00","depth":0,"from_js":false,"from_sourcemap":false,"parent":null}
